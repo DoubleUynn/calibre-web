@@ -175,6 +175,8 @@ class _Settings(_Base):
     config_limiter_options = Column(String, default="")
     config_check_extensions = Column(Boolean, default=True)
 
+    config_opds_exclude_tags = Column(String, default="")
+
     def __repr__(self):
         return self.__class__.__name__
 

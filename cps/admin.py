@@ -252,7 +252,6 @@ def configuration():
                                  feature_support=feature_support,
                                  title=_("Basic Configuration"), page="config")
 
-
 @admi.route("/admin/ajaxconfig", methods=["POST"])
 @user_login_required
 @admin_required
@@ -278,7 +277,7 @@ def calibreweb_alive():
 @user_login_required
 @admin_required
 def view_configuration():
-    read_column = calibre_db.session.query(db.CustomColumns) \
+   read_column = calibre_db.session.query(db.CustomColumns) \
         .filter(and_(db.CustomColumns.datatype == 'bool', db.CustomColumns.mark_for_delete == 0)).all()
     restrict_columns = calibre_db.session.query(db.CustomColumns) \
         .filter(and_(db.CustomColumns.datatype == 'text', db.CustomColumns.mark_for_delete == 0)).all()
@@ -1880,6 +1879,10 @@ def _configuration_update_helper():
             unrar_status = helper.check_unrar(config.config_rarfile_location)
             if unrar_status:
                 return _configuration_result(unrar_status)
+
+        # OPDS configuration
+        _config_string(to_save, "config_opds_exclude_tags")
+
     except (OperationalError, InvalidRequestError) as e:
         ub.session.rollback()
         log.error_or_exception("Settings Database error: {}".format(e))
