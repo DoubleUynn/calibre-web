@@ -1881,7 +1881,7 @@ def _configuration_update_helper():
                 return _configuration_result(unrar_status)
 
         # OPDS configuration
-        _config_string(to_save, "config_opds_exclude_tags")
+        _config_string(to_save, "config_opds_excluded_tags")
 
     except (OperationalError, InvalidRequestError) as e:
         ub.session.rollback()
