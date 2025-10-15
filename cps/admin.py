@@ -277,7 +277,7 @@ def calibreweb_alive():
 @user_login_required
 @admin_required
 def view_configuration():
-   read_column = calibre_db.session.query(db.CustomColumns) \
+    read_column = calibre_db.session.query(db.CustomColumns) \
         .filter(and_(db.CustomColumns.datatype == 'bool', db.CustomColumns.mark_for_delete == 0)).all()
     restrict_columns = calibre_db.session.query(db.CustomColumns) \
         .filter(and_(db.CustomColumns.datatype == 'text', db.CustomColumns.mark_for_delete == 0)).all()
